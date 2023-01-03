@@ -7,9 +7,7 @@ Add your [TMDB](https://www.themoviedb.org/) API key in the `local.properties` f
 TMDB_API_KEY="YOUR_API_KEY"
 ```
 ## Screenshots
-![alt text](https://github.com/Ajinkrishnak/TmdbAppCompose/blob/main/screenshots/screenshot1.jpg?raw=true)
-![alt text](https://github.com/Ajinkrishnak/TmdbAppCompose/blob/main/screenshots/screenshot2.jpg?raw=true)
-![alt text](https://github.com/Ajinkrishnak/TmdbAppCompose/blob/main/screenshots/screenshot3.jpg?raw=true)
+<img src="https://user-images.githubusercontent.com/48273411/210358426-4d34cf3e-67ba-4bcd-b13e-26b353e26ea4.png" width="250" /> <img src="https://user-images.githubusercontent.com/48273411/210358652-aaf94cfc-9c6d-43de-bf54-be6c2bc05661.png" width="250" /> <img src="https://user-images.githubusercontent.com/48273411/210358837-288db934-7dce-478a-b16d-1677ccc109e0.png" width="250" />
 
 ## Tech Stack 🛠
 - [Jetpack Compose](https://developer.android.com/jetpack/compose/) - Jetpack Compose is Android’s modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs.
