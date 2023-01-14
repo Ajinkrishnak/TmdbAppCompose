@@ -33,23 +33,26 @@ fun ViewAllScreen(
         Box(modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())) {
             val movieItems = selectList(moviesType, viewModel)
             val modifier =
-                if (movieItems.loadState.append == LoadState.Loading) Modifier.padding(bottom = 80.dp) else Modifier.fillMaxSize()
-            Column {
-                LazyVerticalGrid(modifier = modifier, columns = GridCells.Adaptive(128.dp), content = {
-                    items(movieItems.itemCount) { i ->
-                        Row {
-                            movieItems[i]?.let {
-                                MovieItemCard(
-                                    item = it,
-                                    modifier = Modifier
-                                        .fillMaxWidth(),
-                                    navController = navController
-                                )
-                            }
+                if (movieItems.loadState.append == LoadState.Loading)
+                    Modifier.padding(bottom = 80.dp)
+                else Modifier.fillMaxSize()
+            LazyVerticalGrid(modifier = modifier, columns = GridCells.Adaptive(128.dp), content = {
+                items(movieItems.itemCount) { i ->
+                    Row {
+                        movieItems[i]?.let {
+                            MovieItemCard(
+                                item = it,
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                navController = navController
+                            )
                         }
                     }
-                })
-                if (movieItems.loadState.append == LoadState.Loading) PaginationProgress() else {}
+                }
+            })
+            if (movieItems.loadState.append == LoadState.Loading)
+                PaginationProgress()
+            else {
             }
             handlePagingResult(movieItems)
         }
