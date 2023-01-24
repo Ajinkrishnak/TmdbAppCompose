@@ -11,6 +11,7 @@ import com.example.tmdbapp.domain.use_cases.now_playing.NowPlayingMoviesList
 import com.example.tmdbapp.domain.use_cases.now_playing.NowPlayingMoviesPagingList
 import com.example.tmdbapp.domain.use_cases.popular.PopularMoviesList
 import com.example.tmdbapp.domain.use_cases.popular.PopularMoviesPagingList
+import com.example.tmdbapp.domain.use_cases.search_movie.SearchMoviesPagingList
 import com.example.tmdbapp.domain.use_cases.top_rated.TopRatedMoviesList
 import com.example.tmdbapp.domain.use_cases.top_rated.TopRatedMoviesPagingList
 import com.example.tmdbapp.domain.use_cases.upcoming.UpcomingMoviesList
@@ -101,6 +102,6 @@ object AppModule {
         MovieDetails(tmDbRepository),
         MovieCredits(tmDbRepository),
         GetVideos(tmDbRepository),
-
+        SearchMoviesPagingList(tmDbRepository),
     )
 }

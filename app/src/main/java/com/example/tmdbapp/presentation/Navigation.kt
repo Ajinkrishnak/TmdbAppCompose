@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.example.tmdbapp.presentation.dashboard.DashboardScreen
 import com.example.tmdbapp.presentation.movie_details.MovieDetailsScreen
 import com.example.tmdbapp.presentation.movie_details.YoutubePlayerScreen
+import com.example.tmdbapp.presentation.search_movie.SearchPageScreen
 import com.example.tmdbapp.presentation.view_all.ViewAllScreen
 
 @ExperimentalAnimationApi
@@ -17,9 +18,13 @@ import com.example.tmdbapp.presentation.view_all.ViewAllScreen
 fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.Dashboard.route) {
+
+        // Dashboard Screen
         composable(route = Screen.Dashboard.route) {
             DashboardScreen(navController = navController)
         }
+
+        //View All movies screen
         composable(
             route = Screen.ViewAll.route + "?moviesType={moviesType}", arguments = listOf(
                 navArgument(name = "moviesType") {
@@ -31,6 +36,8 @@ fun Navigation() {
             val moviesType = it.arguments?.getString("moviesType") ?: ""
             ViewAllScreen(navController = navController, moviesType)
         }
+
+        // Movie Details Screen
         composable(
             route = Screen.MovieDetailsScreen.route + "?movieId={movieId}&moviesTitle={moviesTitle}",
             arguments = listOf(
@@ -48,6 +55,8 @@ fun Navigation() {
             val movieId = it.arguments?.getString("movieId") ?: ""
             MovieDetailsScreen(navController = navController, moviesTitle)
         }
+
+        // Youtube Player Screen
         composable(
             route = Screen.YoutubePlayerScreen.route + "youtubeCode={youtubeCode}",
             arguments = listOf(
@@ -60,6 +69,14 @@ fun Navigation() {
             val youtubeCode = it.arguments?.getString("youtubeCode") ?: ""
             YoutubePlayerScreen(navController = navController, youtubeCode)
         }
+
+        // Search Page Screen
+        composable(
+            route = Screen.SearchPageScreen.route
+        ) {
+            SearchPageScreen(navController = navController)
+        }
+
 
     }
 }

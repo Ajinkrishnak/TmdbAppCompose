@@ -5,6 +5,7 @@ import com.example.tmdbapp.data.model.movies.NowPlayingMovieResponse
 import com.example.tmdbapp.data.model.movies.PopularMovieResponse
 import com.example.tmdbapp.data.model.movies.TopRatedMovieResponse
 import com.example.tmdbapp.data.model.movies.UpcomingMovieResponse
+import com.example.tmdbapp.data.model.search_movies.SearchMovieResponse
 import com.example.tmdbapp.data.model.videos.GetVideosResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -35,7 +36,6 @@ interface ApiService {
         @Query("language") language: String?,
     ):UpcomingMovieResponse
 
-
     //get now top_rated movies
     @GET("movie/top_rated")
     suspend fun getTopRated(
@@ -64,4 +64,11 @@ interface ApiService {
         @Query("language") language: String?,
     ): Response<GetVideosResponse>
 
+    //search movie by name
+    @GET("search/movie")
+    suspend fun searchMovie(
+        @Query("query") query: String?,
+        @Query("page") page: Int?,
+        @Query("language") language: String?,
+    ): Response<SearchMovieResponse>
 }

@@ -53,8 +53,8 @@ fun ViewAllScreen(
             if (movieItems.loadState.append == LoadState.Loading)
                 PaginationProgress()
             else {
+                handlePagingResult(movieItems)
             }
-            handlePagingResult(movieItems)
         }
     }
 }

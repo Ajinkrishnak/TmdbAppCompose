@@ -1,4 +1,4 @@
-package com.example.tmdbapp.presentation.dashboard.components
+package com.example.tmdbapp.presentation.search_movie.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,19 +30,18 @@ import com.example.tmdbapp.data.model.movies.MovieItem
 import com.example.tmdbapp.presentation.Screen
 
 @Composable
-fun MovieItemCard(item: MovieItem?, modifier: Modifier, navController: NavController) {
+fun SearchMovieItemCard(item: MovieItem?, navController: NavController) {
     Card(
         modifier = Modifier
-            .padding(10.dp)
+            .fillMaxWidth()
+            .padding(top = 10.dp)
             .background(color = Color.White)
             .clickable {
                 navController.navigate(Screen.MovieDetailsScreen.route + "?movieId=${item?.movieId.toString()}&moviesTitle=${item?.title}")
             },
         shape = RoundedCornerShape(10.dp)
     ) {
-        Column(
-            modifier = modifier
-        ) {
+        Row {
             SubcomposeAsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(BuildConfig.ORIGINAL_IMAGE_URL + item?.posterPath)
@@ -51,7 +50,7 @@ fun MovieItemCard(item: MovieItem?, modifier: Modifier, navController: NavContro
                 contentDescription = stringResource(R.string.description),
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .width(150.dp)
                     .height(160.dp),
                 loading = {
                     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.anim_img_loading))
@@ -63,25 +62,38 @@ fun MovieItemCard(item: MovieItem?, modifier: Modifier, navController: NavContro
                     )
                 }
             )
-            Spacer(modifier = Modifier.height(10.dp))
-            val lineHeight = MaterialTheme.typography.h6.fontSize * 4 / 3
-            Text(
-                text = item?.title ?: "",
-                style = MaterialTheme.typography.body1,
-                modifier = Modifier.padding(horizontal = 10.dp),
-                maxLines = 1,
-                fontWeight = FontWeight.Bold,
-                overflow = TextOverflow.Ellipsis,
-                lineHeight = lineHeight
-            )
-            Text(
-                text = item?.releaseDate ?: "",
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(horizontal = 10.dp)
-            )
-            Spacer(modifier = Modifier.height(10.dp))
+            Column(modifier = Modifier.padding(horizontal = 10.dp)) {
+                Spacer(modifier = Modifier.height(10.dp))
+                val lineHeight = MaterialTheme.typography.h6.fontSize * 4 / 3
+                val lineHeight2 = MaterialTheme.typography.caption.fontSize * 4 / 3
+                Text(
+                    text = item?.title ?: "",
+                    style = MaterialTheme.typography.body1,
+                    maxLines = 1,
+                    fontWeight = FontWeight.Bold,
+                    overflow = TextOverflow.Ellipsis,
+                    lineHeight = lineHeight
+                )
+                Text(
+                    text = item?.releaseDate ?: "",
+                    style = MaterialTheme.typography.caption,
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+//                Text(
+//                    text = "Overview",
+//                    style = MaterialTheme.typography.h5,
+//                    maxLines = 1,
+//                    modifier = Modifier.padding(start = 15.dp)
+//                )
+//                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = item?.overview ?: "",
+                    style = MaterialTheme.typography.caption,
+                    lineHeight = lineHeight2,
+                    maxLines = 5,
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+            }
         }
-
     }
-
 }

@@ -1,8 +1,6 @@
 package com.example.tmdbapp.presentation.dashboard.components
-
-
-import android.R
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
@@ -19,16 +17,21 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.tmdbapp.presentation.Screen
 import com.example.tmdbapp.ui.theme.WhiteTransparent
 
 @Composable
-fun SearchBar() {
+fun SearchBar(navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(50.dp)
             .clip(shape = RoundedCornerShape(30.dp))
-            .background(WhiteTransparent),
+            .background(WhiteTransparent)
+            .clickable {
+                navController.navigate(Screen.SearchPageScreen.route)
+            },
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -41,7 +44,7 @@ fun SearchBar() {
                 modifier = Modifier.padding(horizontal = 15.dp)
             )
             Icon(
-                painter = painterResource(id = R.drawable.ic_menu_search),
+                painter = painterResource(id = android.R.drawable.ic_menu_search),
                 contentDescription = "search_icon",
                 Modifier.padding(end = 20.dp),
                 tint = Color.Black

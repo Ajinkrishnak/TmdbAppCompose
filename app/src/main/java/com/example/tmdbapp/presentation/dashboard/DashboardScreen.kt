@@ -29,11 +29,11 @@ import com.example.tmdbapp.utils.HomeBottomNavigation
 fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel = hiltViewModel()) {
     Scaffold(bottomBar = {
         BottomNavigationBar(navController = navController)
-    }) {paddingValues ->
+    }) { paddingValues ->
         Box(modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())) {
             LazyColumn() {
                 item {
-                    TopBar( viewModel.popularMovieList.isNotEmpty())
+                    TopBar(navController, viewModel.popularMovieList.isNotEmpty())
                     Spacer(modifier = Modifier.height(20.dp))
 
                     Title(
@@ -80,7 +80,7 @@ fun BottomNavigationBar(navController: NavController) {
 
     val navigationItems = listOf(
         HomeBottomNavigation.Home,
-         HomeBottomNavigation.Favorite,
+        HomeBottomNavigation.Favorite,
         HomeBottomNavigation.Profile,
     )
 
@@ -158,7 +158,7 @@ fun PopularList(viewModel: DashboardViewModel, navController: NavController) {
                 item.movieId.toString()
             }
         ) { item ->
-            MovieItemCard(item,Modifier.width(140.dp), navController)
+            MovieItemCard(item, Modifier.width(140.dp), navController)
         }
     }
 }
@@ -172,7 +172,7 @@ fun NowPlayingList(viewModel: DashboardViewModel, navController: NavController) 
                 item.movieId.toString()
             }
         ) { item ->
-            MovieItemCard(item, Modifier.width(140.dp),navController)
+            MovieItemCard(item, Modifier.width(140.dp), navController)
         }
     }
 }
@@ -186,7 +186,7 @@ fun UpcomingList(viewModel: DashboardViewModel, navController: NavController) {
                 item.movieId.toString()
             }
         ) { item ->
-            MovieItemCard(item, Modifier.width(140.dp),navController)
+            MovieItemCard(item, Modifier.width(140.dp), navController)
         }
     }
 }

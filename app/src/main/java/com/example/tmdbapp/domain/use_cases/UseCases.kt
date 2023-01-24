@@ -7,6 +7,7 @@ import com.example.tmdbapp.domain.use_cases.now_playing.NowPlayingMoviesList
 import com.example.tmdbapp.domain.use_cases.now_playing.NowPlayingMoviesPagingList
 import com.example.tmdbapp.domain.use_cases.popular.PopularMoviesList
 import com.example.tmdbapp.domain.use_cases.popular.PopularMoviesPagingList
+import com.example.tmdbapp.domain.use_cases.search_movie.SearchMoviesPagingList
 import com.example.tmdbapp.domain.use_cases.top_rated.TopRatedMoviesList
 import com.example.tmdbapp.domain.use_cases.top_rated.TopRatedMoviesPagingList
 import com.example.tmdbapp.domain.use_cases.upcoming.UpcomingMoviesList
@@ -23,9 +24,8 @@ data class UseCases(
     val nowPlayingMoviesList: NowPlayingMoviesList,
     val upcomingMoviesList: UpcomingMoviesList,
     val topRatedMoviesList: TopRatedMoviesList,
-
     val movieDetails: MovieDetails,
     val movieCredits: MovieCredits,
     val getVideos: GetVideos,
-
+    val searchMoviesPagingList: SearchMoviesPagingList,
     )

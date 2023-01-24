@@ -7,11 +7,9 @@ import com.example.tmdbapp.data.ApiService
 import com.example.tmdbapp.data.model.cast.MovieCreditsResponse
 import com.example.tmdbapp.data.model.details.MovieDetailsResponse
 import com.example.tmdbapp.data.model.movies.*
+import com.example.tmdbapp.data.model.search_movies.SearchMovieResponse
 import com.example.tmdbapp.data.model.videos.GetVideosResponse
-import com.example.tmdbapp.data.paging.NowPlayingPagingSource
-import com.example.tmdbapp.data.paging.PopularPagingSource
-import com.example.tmdbapp.data.paging.TopRatedPagingSource
-import com.example.tmdbapp.data.paging.UpcomingPagingSource
+import com.example.tmdbapp.data.paging.*
 import com.example.tmdbapp.domain.TmDbRepository
 import com.example.tmdbapp.utils.Constants
 import com.example.tmdbapp.utils.NetworkResult
@@ -57,6 +55,7 @@ class TmDbRepositoryImpl @Inject constructor(private val apiService: ApiService)
         ),
         pagingSourceFactory = { TopRatedPagingSource(apiService, lang) }
     ).flow
+
 
     //non-paging
     override suspend fun popularList(
@@ -181,7 +180,7 @@ class TmDbRepositoryImpl @Inject constructor(private val apiService: ApiService)
                     page = page, language = lang
                 )
                 emit(
-                  NetworkResult.Success(response)
+                    NetworkResult.Success(response)
                 )
             } catch (throwable: Throwable) {
                 emit(
@@ -294,6 +293,42 @@ class TmDbRepositoryImpl @Inject constructor(private val apiService: ApiService)
                 val response = apiService.getVideos(
                     movieId = movieId, language = lang
                 )
+                emit(
+                    if (response.isSuccessful) NetworkResult.Success(response) else
+                        NetworkResult.Failure(false, null, null, Constants.CONVERSION_FAILURE)
+                )
+            } catch (throwable: Throwable) {
+                emit(
+                    when (throwable) {
+                        is HttpException -> {
+                            NetworkResult.Failure(
+                                false,
+                                throwable.code(),
+                                throwable.response()?.errorBody(),
+                                throwable.response()
+                                    ?.let { ResponseCodeManager.checkRetrofitApiResponse(it) })
+                        }
+                        is IOException -> {
+                            NetworkResult.Failure(true, null, null, Constants.STS_DEFAULT)
+                        }
+                        else -> {
+                            NetworkResult.Failure(false, null, null, Constants.CONVERSION_FAILURE)
+                        }
+                    }
+                )
+            }
+        }.flowOn(Dispatchers.IO)
+
+    }
+
+    override suspend fun searchPagingList(
+        query: String,
+        lang: String
+    ): Flow<NetworkResult<Response<SearchMovieResponse>>> {
+        return flow {
+            emit(NetworkResult.Loading)
+            try {
+                val response = apiService.searchMovie(query = query, language = lang, page = 1)
                 emit(
                     if (response.isSuccessful) NetworkResult.Success(response) else
                         NetworkResult.Failure(false, null, null, Constants.CONVERSION_FAILURE)
