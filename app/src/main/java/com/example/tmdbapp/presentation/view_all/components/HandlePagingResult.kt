@@ -3,13 +3,13 @@ package com.example.tmdbapp.presentation.view_all.components
 import androidx.compose.runtime.Composable
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import com.example.tmdbapp.data.model.movies.MovieItem
+import com.tmdb.domain.model.movies.MovieItem
 import com.example.tmdbapp.presentation.dashboard.components.ErrorView
 import com.example.tmdbapp.presentation.dashboard.components.IsLoading
 
 @Composable
 fun handlePagingResult(
-    movieItems: LazyPagingItems<MovieItem>,
+    movieItems: LazyPagingItems<com.tmdb.domain.model.movies.MovieItem>,
 ) {
     movieItems.apply {
         val error = when {

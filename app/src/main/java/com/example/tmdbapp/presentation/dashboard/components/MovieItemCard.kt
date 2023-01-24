@@ -26,11 +26,11 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.tmdbapp.BuildConfig
 import com.example.tmdbapp.R
-import com.example.tmdbapp.data.model.movies.MovieItem
+import com.tmdb.domain.model.movies.MovieItem
 import com.example.tmdbapp.presentation.Screen
 
 @Composable
-fun MovieItemCard(item: MovieItem?, modifier: Modifier, navController: NavController) {
+fun MovieItemCard(item: com.tmdb.domain.model.movies.MovieItem?, modifier: Modifier, navController: NavController) {
     Card(
         modifier = Modifier
             .padding(10.dp)

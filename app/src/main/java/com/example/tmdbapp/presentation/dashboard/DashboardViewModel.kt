@@ -8,10 +8,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateMapOf
-import com.example.tmdbapp.data.model.movies.MovieItem
-import com.example.tmdbapp.domain.use_cases.UseCases
+import com.tmdb.domain.model.movies.MovieItem
 import com.example.tmdbapp.utils.Constants
-import com.example.tmdbapp.utils.NetworkResult
+import com.tmdb.domain.common.NetworkResult
+import com.tmdb.domain.use_cases.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 

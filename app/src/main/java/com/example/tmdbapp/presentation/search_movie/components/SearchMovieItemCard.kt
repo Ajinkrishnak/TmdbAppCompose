@@ -26,11 +26,11 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.tmdbapp.BuildConfig
 import com.example.tmdbapp.R
-import com.example.tmdbapp.data.model.movies.MovieItem
+import com.tmdb.domain.model.movies.MovieItem
 import com.example.tmdbapp.presentation.Screen
 
 @Composable
-fun SearchMovieItemCard(item: MovieItem?, navController: NavController) {
+fun SearchMovieItemCard(item: com.tmdb.domain.model.movies.MovieItem?, navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()

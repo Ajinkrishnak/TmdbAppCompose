@@ -29,9 +29,9 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.tmdbapp.BuildConfig
 import com.example.tmdbapp.R
-import com.example.tmdbapp.data.model.cast.MovieCreditsResponse
-import com.example.tmdbapp.data.model.details.MovieDetailsResponse
-import com.example.tmdbapp.data.model.videos.GetVideosResponse
+import com.tmdb.domain.model.cast.MovieCreditsResponse
+import com.tmdb.domain.model.details.MovieDetailsResponse
+import com.tmdb.domain.model.videos.GetVideosResponse
 import com.example.tmdbapp.presentation.Screen
 import com.example.tmdbapp.presentation.dashboard.components.ErrorView
 import com.example.tmdbapp.presentation.dashboard.components.IsLoading
@@ -75,7 +75,7 @@ fun MovieDetailsScreen(
 
 
 @Composable
-fun ItemPoster(response: MovieDetailsResponse) {
+fun ItemPoster(response: com.tmdb.domain.model.details.MovieDetailsResponse) {
     Box(modifier = Modifier.padding(horizontal = 15.dp)) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
@@ -105,7 +105,7 @@ fun ItemPoster(response: MovieDetailsResponse) {
 }
 
 @Composable
-fun ItemTitle( navController: NavController,response: MovieDetailsResponse, videos: GetVideosResponse) {
+fun ItemTitle(navController: NavController, response: com.tmdb.domain.model.details.MovieDetailsResponse, videos: com.tmdb.domain.model.videos.GetVideosResponse) {
 
     Spacer(modifier = Modifier.height(20.dp))
 
@@ -141,7 +141,7 @@ fun ItemTitle( navController: NavController,response: MovieDetailsResponse, vide
         )
 
         val originalLanguage = if (response.originalLanguage != null) {
-            " (${response.originalLanguage.uppercase(Locale.ROOT)})"
+            " (${response.originalLanguage?.uppercase(Locale.ROOT)})"
         } else ""
         Text(
             text = response.releaseDate + originalLanguage + " " + response.runtime?.let {
@@ -163,7 +163,7 @@ fun ItemTitle( navController: NavController,response: MovieDetailsResponse, vide
             response.genres?.forEach {
                 item {
                     Text(
-                        text = if (it == response.genres.last()) it?.name.toString() else it?.name + ", ",
+                        text = if (it == response.genres?.last()) it?.name.toString() else it?.name + ", ",
                         style = MaterialTheme.typography.body1,
                         color = Color.Gray,
                         maxLines = 1
@@ -225,7 +225,7 @@ fun ItemTitle( navController: NavController,response: MovieDetailsResponse, vide
 }
 
 @Composable
-fun ItemOverview(response: MovieDetailsResponse) {
+fun ItemOverview(response: com.tmdb.domain.model.details.MovieDetailsResponse) {
     Spacer(modifier = Modifier.height(15.dp))
     Text(
         text = "Overview",
@@ -244,7 +244,7 @@ fun ItemOverview(response: MovieDetailsResponse) {
 }
 
 @Composable
-fun ItemCast(credits: MovieCreditsResponse) {
+fun ItemCast(credits: com.tmdb.domain.model.cast.MovieCreditsResponse) {
     Spacer(modifier = Modifier.height(15.dp))
     Text(
         text = "Top Billed Cast",

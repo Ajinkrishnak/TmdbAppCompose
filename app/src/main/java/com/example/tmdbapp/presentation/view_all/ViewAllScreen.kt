@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.tmdbapp.data.model.movies.MovieItem
+import com.tmdb.domain.model.movies.MovieItem
 import com.example.tmdbapp.presentation.dashboard.MoviesType
 import com.example.tmdbapp.presentation.dashboard.components.*
 import com.example.tmdbapp.presentation.view_all.components.PaginationProgress
@@ -60,7 +60,7 @@ fun ViewAllScreen(
 }
 
 @Composable
-fun selectList(moviesType: String, viewModel: ViewAllViewModel): LazyPagingItems<MovieItem> {
+fun selectList(moviesType: String, viewModel: ViewAllViewModel): LazyPagingItems<com.tmdb.domain.model.movies.MovieItem> {
     return when (moviesType) {
         MoviesType.POPULAR.value -> viewModel.popularMoviesPagingItems.collectAsLazyPagingItems()
         MoviesType.NOW_PLAYING.value -> viewModel.nowPlayingMoviesPagingItems.collectAsLazyPagingItems()

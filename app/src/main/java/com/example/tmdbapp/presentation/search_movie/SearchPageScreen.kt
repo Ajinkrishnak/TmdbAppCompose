@@ -17,7 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.example.tmdbapp.data.model.movies.MovieItem
+import com.tmdb.domain.model.movies.MovieItem
 import com.example.tmdbapp.presentation.dashboard.components.ErrorView
 import com.example.tmdbapp.presentation.dashboard.components.IsLoading
 import com.example.tmdbapp.presentation.dashboard.components.MovieItemCard

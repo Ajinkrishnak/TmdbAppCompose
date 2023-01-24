@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import androidx.paging.PagingData
-import com.example.tmdbapp.data.model.movies.MovieItem
-import com.example.tmdbapp.domain.use_cases.UseCases
 import com.example.tmdbapp.utils.Constants
+import com.tmdb.domain.model.movies.MovieItem
+import com.tmdb.domain.use_cases.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow

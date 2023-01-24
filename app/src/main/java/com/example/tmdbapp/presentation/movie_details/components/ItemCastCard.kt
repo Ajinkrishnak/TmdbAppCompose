@@ -26,11 +26,11 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.tmdbapp.BuildConfig
 import com.example.tmdbapp.R
-import com.example.tmdbapp.data.model.cast.CastItem
+import com.tmdb.domain.model.cast.CastItem
 
 
 @Composable
-fun ItemCastCard(castItem: CastItem?) {
+fun ItemCastCard(castItem: com.tmdb.domain.model.cast.CastItem?) {
     Card(
         modifier = Modifier
             .padding(start = 15.dp)

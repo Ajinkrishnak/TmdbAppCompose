@@ -5,10 +5,6 @@ plugins {
     id 'com.google.dagger.hilt.android'
 }
 
-//read credentials
-def credentials = rootProject.file("local.properties")
-def credentialProperty = new Properties()
-credentialProperty.load(new FileInputStream(credentials))
 android {
     namespace 'com.example.tmdbapp'
     compileSdk 33
@@ -22,11 +18,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
         buildConfigField("String", "SMALL_IMAGE_URL", "\"https://image.tmdb.org/t/p/w200\"")
         buildConfigField("String", "LARGE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\"")
         buildConfigField("String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\"")
-        buildConfigField("String", "TMDB_API_KEY", credentialProperty['TMDB_API_KEY'])
 
         vectorDrawables {
             useSupportLibrary true
@@ -60,6 +54,10 @@ android {
 }
 
 dependencies {
+
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+
     implementation 'androidx.appcompat:appcompat:1.5.1'
     def lottieVersion = "5.2.0"
     def nav_version = "2.5.2"

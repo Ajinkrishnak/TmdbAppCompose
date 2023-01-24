@@ -9,12 +9,12 @@ import javax.inject.Inject
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.lifecycle.SavedStateHandle
-import com.example.tmdbapp.data.model.cast.MovieCreditsResponse
-import com.example.tmdbapp.data.model.details.MovieDetailsResponse
-import com.example.tmdbapp.data.model.videos.GetVideosResponse
-import com.example.tmdbapp.domain.use_cases.UseCases
+import com.tmdb.domain.model.cast.MovieCreditsResponse
+import com.tmdb.domain.model.details.MovieDetailsResponse
+import com.tmdb.domain.model.videos.GetVideosResponse
 import com.example.tmdbapp.utils.Constants
-import com.example.tmdbapp.utils.NetworkResult
+import com.tmdb.domain.common.NetworkResult
+import com.tmdb.domain.use_cases.UseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 
