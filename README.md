@@ -32,12 +32,12 @@ TMDB_API_KEY="YOUR_API_KEY"
 You can install this application to test on your android smartphone. To download the signed application go to your chrome browser and copy-paste the download link:
 
 ```
-https://user-images.githubusercontent.com/48273411/210358426-4d34cf3e-67ba-4bcd-b13e-26b353e26ea4.png
+https://github.com/Ajinkrishnak/TmdbAppCompose/blob/4138f327870a451d0f12af24ed22420219eb32d1/app-release.apk
 ```
 
 Download will be started automatically. After then install it on your android device.
 
-N.B: It supports only in android version 4.0 or later.
+N.B: It supports only in android version 5.0 or later.
 
 SDK levels supported 
 --------------------
