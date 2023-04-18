@@ -27,6 +27,18 @@ TMDB_API_KEY="YOUR_API_KEY"
 - [Lottie Files for Compose](https://github.com/airbnb/lottie) - Lottie is a library for Android, iOS, and Web that parses [Adobe After Effects](http://www.adobe.com/products/aftereffects.html) animations exported as json with [Bodymovin](https://github.com/airbnb/lottie-web) and renders them natively on mobile and on the web!
 - [Compose Pagination](https://developer.android.com/jetpack/androidx/releases/paging) - The Paging Library makes it easier for you to load data gradually and gracefully within your app.
 
+## How to install?
+
+You can install this application to test on your android smartphone. To download the signed application go to your chrome browser and copy-paste the download link:
+
+```
+https://user-images.githubusercontent.com/48273411/210358426-4d34cf3e-67ba-4bcd-b13e-26b353e26ea4.png
+```
+
+Download will be started automatically. After then install it on your android device.
+
+N.B: It supports only in android version 4.0 or later.
+
 SDK levels supported 
 --------------------
 - Minimum SDK 21
