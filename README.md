@@ -34,6 +34,7 @@ You can install this application to test on your android smartphone. To download
 ```
 https://github.com/Ajinkrishnak/TmdbAppCompose/releases/download/v0.1.0-alpha/tmdb-app.apk
 ```
+
 Download will be started automatically. After then install it on your android device.
 
 N.B: It supports only in android version 5.0 or later.
