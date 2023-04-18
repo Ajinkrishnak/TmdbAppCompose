@@ -36,6 +36,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            firebaseAppDistribution {
+                releaseNotes="Debug notes for demo version"
+                testers="ajinkrishna296@gmail.com, ashiiq66@gmail.com"
+            }
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
