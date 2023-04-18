@@ -1,26 +1,61 @@
-name: Android CI
+name: Android Pull Request & Master CI & CD to Firebase
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - 'master'
+  push:
+    branches:
+      - 'master'
 
 jobs:
-  build:
-
+  test:
+    name: Run Unit Tests
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
+      - uses: actions/checkout@v1
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Unit tests
+        run: bash ./gradlew test --stacktrace
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+  build:
+    name: Upload apk to App Tester
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: build release
+        run: bash ./gradlew assembleDebug
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.2
+        with:
+          appId: '1:636762382269:android:94024080e27cbee9e53cd4'
+          token: '${secrets.FIREBASE_TOKEN}'
+          groups: testers
+          file: app/build/outputs/apk/debug/app-debug.apk
+
+  apk:
+    name: Generate APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Build debug APK
+        run: bash ./gradlew assembleDebug --stacktrace
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app
+          path: app/build/outputs/apk/debug/app-debug.apk
